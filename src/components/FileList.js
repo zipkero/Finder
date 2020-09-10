@@ -2,22 +2,23 @@ import React, { useState } from 'react';
 import { List, Input, Button } from 'antd';
 import File from './File';
 import FileManager from '../modules/FileManager';
+import TagList from './TagList';
 
-const { Search } = Input;
 
 function FileList(props) {
     const [files, setFiles] = useState([]);
 
     const getFileList = async () => {
         const fm = new FileManager("D:\\WebService\\WebResource\\ECERP\\Contents\\pages");
-        const fileList = await fm.getAllFiles()        
+        const fileList = await fm.getAllFiles()
         setFiles(fileList);
     }
 
     return (
         <div>
-            <Input></Input>
-            <Button title="Search" onClick={()=> getFileList()} />
+            <Input />
+            <TagList />
+            <Button title="Search" onClick={() => getFileList()} />
             <List
                 size="large"
                 bordered>
