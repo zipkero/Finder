@@ -7,6 +7,24 @@ function TagList() {
     }
     return (
         <div>
+            <Tag closable onClose={onClose} style={{ marginBottom: "5px" }}>
+                onInitFunction
+            </Tag>
+            <Tag closable onClose={onClose}>
+                onInitFunction
+            </Tag>
+            <Tag closable onClose={onClose}>
+                onInitFunction
+            </Tag>
+            <Tag closable onClose={onClose}>
+                onInitFunction
+            </Tag>
+            <Tag closable onClose={onClose}>
+                onInitFunction
+            </Tag>
+            <Tag closable onClose={onClose}>
+                onInitFunction
+            </Tag>
             <Tag closable onClose={onClose}>
                 onInitFunction
             </Tag>
