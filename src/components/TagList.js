@@ -1,39 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tag } from 'antd';
 
-function TagList() {
-    const onClose = (e) => {
-        console.log(e);
-    }
+function TagList({ tags }) {
     return (
         <div>
-            <Tag closable onClose={onClose} style={{ marginBottom: "5px" }}>
-                onInitFunction
-            </Tag>
-            <Tag closable onClose={onClose}>
-                onInitFunction
-            </Tag>
-            <Tag closable onClose={onClose}>
-                onInitFunction
-            </Tag>
-            <Tag closable onClose={onClose}>
-                onInitFunction
-            </Tag>
-            <Tag closable onClose={onClose}>
-                onInitFunction
-            </Tag>
-            <Tag closable onClose={onClose}>
-                onInitFunction
-            </Tag>
-            <Tag closable onClose={onClose}>
-                onInitFunction
-            </Tag>
-            <Tag closable onClose={onClose}>
-                onInitWidget
-            </Tag>
-            <Tag closable onClose={onClose}>
-                searchManager
-            </Tag>
+            {tags.map(tag => (
+                <Tag key={tag.id} closable style={{ marginBottom: "5px" }}>
+                    {tag.name}
+                </Tag>
+            ))}
         </div>
     )
 }
