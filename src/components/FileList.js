@@ -34,7 +34,7 @@ function FileList(props) {
 
     const getFiles = async () => {
         const sf = new SearchFiles();
-        const fileList = await sf.search("D:\\WebService\\ECERP\\Contents\\pages", {
+        const fileList = await sf.search("./pages", {
             extensions: [".js"],
         })
         console.log(fileList);
