@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import { List, Input, Button, Row, Col, Divider } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import React, {useState} from 'react';
+import {List, Input, Button, Row, Col, Divider, Modal} from 'antd';
+import {SearchOutlined} from '@ant-design/icons';
 import File from './File';
 import SearchFiles from '../modules/SearchFiles';
 import TagList from './TagList';
 
+function warning() {
+    Modal.warning({
+        title: '검색어 추가는 10개까지만 가능합니다.',
+    });
+}
 
 function FileList(props) {
     const [files, setFiles] = useState([]);
@@ -15,8 +20,13 @@ function FileList(props) {
         getFiles();
     }
 
-    const onKeyDown = (e) => {        
+    const onKeyDown = (e) => {
         if (e.keyCode !== 13) {
+            return;
+        }
+
+        if (tags.length >= 10) {
+            warning(e);
             return;
         }
 
@@ -43,19 +53,19 @@ function FileList(props) {
 
     return (
         <div>
-            <Row justify="center" style={{ paddingTop: "20px" }}>
-                <Col>
-                    <Input value={filter} onChange={onChange} onKeyDown={onKeyDown} />
+            <Row justify="center" style={{paddingTop: "20px"}}>
+                <Col span="20">
+                    <Input value={filter} onChange={onChange} onKeyDown={onKeyDown}/>
                 </Col>
             </Row>
-            <Row justify="center" style={{ padding: "20px" }}>
+            <Row justify="center" style={{padding: "20px"}}>
                 <Col>
-                    <TagList tags={tags} />
+                    <TagList tags={tags}/>
                 </Col>
             </Row>
             <Row justify="center">
-                <Col>
-                    <Button type="primary" onClick={onSearch} icon={<SearchOutlined />}>
+                <Col span="20">
+                    <Button type="primary" block onClick={onSearch} icon={<SearchOutlined/>}>
                         Search
                     </Button>
                 </Col>
@@ -63,9 +73,9 @@ function FileList(props) {
             <Divider>Result</Divider>
             <List
                 size="large"
-                >
+            >
                 {files && files.map(file => (
-                    <File key={file.name} file={file} />
+                    <File key={file.name} file={file}/>
                 ))}
             </List>
         </div>
