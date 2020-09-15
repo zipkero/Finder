@@ -31,8 +31,7 @@ function FileList(props) {
         }
 
         setTags(tags => tags.concat({
-            id: Date.now(),
-            name: filter
+            value: filter
         }));
 
         setFilter('');
@@ -42,12 +41,17 @@ function FileList(props) {
         setFilter(e.target.value);
     }
 
+    const onClose = (value) => {
+        setTags(tags => tags.filter(tag => tag.value !== value))
+    }
+
     const getFiles = async () => {
         const sf = new SearchFiles();
+        console.log(tags)
         const fileList = await sf.search("./pages", {
             extensions: ["js"],
+            keywords: tags.map(tag => tag.value)
         })
-        console.log(fileList);
         setFiles(fileList);
     }
 
@@ -60,7 +64,7 @@ function FileList(props) {
             </Row>
             <Row justify="center" style={{padding: "20px"}}>
                 <Col>
-                    <TagList tags={tags}/>
+                    <TagList tags={tags} onClose={onClose}/>
                 </Col>
             </Row>
             <Row justify="center">
