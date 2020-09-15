@@ -45,7 +45,7 @@ function FileList(props) {
     const getFiles = async () => {
         const sf = new SearchFiles();
         const fileList = await sf.search("./pages", {
-            extensions: [".js"],
+            extensions: ["js"],
         })
         console.log(fileList);
         setFiles(fileList);
